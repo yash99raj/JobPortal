@@ -1,6 +1,10 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import dotenv from "dotenv";
+import { connect } from "mongoose";
+import connectDB from "./utils/d b.js";
+dotenv.config({});
 
 const app = express();
 
@@ -20,7 +24,11 @@ const corsOption ={
     credential:true
 }
 
-const PORT=3000;
+app.use(cors(corsOption));
+
+const PORT=process.env.PORT || 3000;
+
 app.listen(PORT,()=>{
+    connectDB();
     console.log(`Server running at port ${PORT}`);
 }) 
